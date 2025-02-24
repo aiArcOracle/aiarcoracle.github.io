@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArcOracle - Unveiling the Cosmos of Data</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='6' fill='%232ECC71'/><circle cx='8' cy='8' r='4' fill='%230A0A0A'/></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background: #0A0A0A;
+            color: #ECF0F1;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #1F2522 0%, #0A0A0A 70%);
+        }
+        /* Starry Background */
+        #stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="10" cy="10" r="1" fill="#ECF0F1" opacity="0.3"/><circle cx="30" cy="40" r="2" fill="#52BE80" opacity="0.4"/><circle cx="70" cy="20" r="1" fill="#2ECC71" opacity="0.5"/><circle cx="50" cy="80" r="1.5" fill="#ECF0F1" opacity="0.3"/></svg>');
+            background-repeat: repeat;
+            animation: twinkle 20s linear infinite;
+        }
+        @keyframes twinkle {
+            0% { transform: translateX(0); opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { transform: translateX(-100px); opacity: 0.8; }
+        }
+        /* Particles */
+        #particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .particle {
+            position: absolute;
+            background: #52BE80;
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: drift 10s infinite;
+        }
+        @keyframes drift {
+            0% { transform: translateY(0); opacity: 0.4; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        /* Logo with Animated Halo */
+        #hero svg {
+            width: 200px;
+            height: 200px;
+            z-index: 2;
+            position: relative;
+        }
+        #hero svg .halo {
+            animation: rotateHalo 12s linear infinite;
+            transform-origin: center;
+        }
+        @keyframes rotateHalo {
+            100% { transform: rotate(360deg); }
+        }
+        /* Hero Text */
+        .hero-text {
+            text-align: center;
+            z-index: 2;
+        }
+        #hero h1 {
+            font-size: 64px;
+            color: #2ECC71;
+            text-shadow: 0 0 15px rgba(46, 204, 113, 0.7);
+            margin: 20px 0 10px;
+            animation: fadeIn 1s ease-in;
+        }
+        #hero p {
+            font-size: 24px;
+            color: #ECF0F1;
+            text-shadow: 0 0 10px rgba(236, 240, 241, 0.3);
+            margin: 5px 0;
+            position: relative;
+        }
+        #hero p.subtitle a {
+            color: #52BE80;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        #hero p.subtitle a:hover {
+            color: #2ECC71;
+            text-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+        }
+        /* Typing Effect */
+        .typing-cursor::after {
+            content: '|';
+            color: #2ECC71;
+            animation: blink 1s step-end infinite;
+            margin-left: 2px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Social Links - Top Right */
+        .social-links {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 3;
+        }
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: rgba(31, 37, 34, 0.8);
+            border-radius: 50%;
+            border: 2px solid #2ECC71;
+            transition: all 0.3s ease;
+        }
+        .social-links a:hover {
+            background: #2ECC71;
+            box-shadow: 0 0 15px rgba(46, 204, 113, 0.8);
+            transform: scale(1.1);
+        }
+        .social-links svg {
+            width: 28px;
+            height: 28px;
+            fill: #ECF0F1;
+        }
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 1;
+        }
+        section {
+            margin-bottom: 80px;
+            background: rgba(31, 37, 34, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(46, 204, 113, 0.15);
+            animation: fadeInText 2s ease-in 1s forwards;
+            opacity: 0;
+        }
+        h2 {
+            color: #2ECC71;
+            font-size: 32px;
+            text-shadow: 0 0 8px rgba(46, 204, 113, 0.4);
+        }
+        p, ul li {
+            font-size: 18px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        ul li {
+            margin: 20px 0;
+        }
+        a {
+            color: #52BE80;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        a:hover {
+            color: #2ECC71;
+            text-shadow: 0 0 8px rgba(46, 204, 113, 0.6);
+        }
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: rgba(31, 37, 34, 0.6);
+        }
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            #hero h1 {
+                font-size: 48px;
+            }
+            #hero p {
+                font-size: 18px;
+            }
+            #hero svg {
+                width: 150px;
+                height: 150px;
+            }
+            .social-links {
+                top: 15px;
+                right: 15px;
+                gap: 10px;
+            }
+            .social-links a {
+                width: 40px;
+                height: 40px;
+            }
+            .social-links svg {
+                width: 22px;
+                height: 22px;
+            }
+            main {
+                padding: 40px 15px;
+            }
+        }
+        @keyframes fadeInText {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div id="stars"></div>
+        <div id="particles"></div>
+        <!-- Social Links - Top Right -->
+        <div class="social-links">
+            <a href="https://x.com/aiArcOracle" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://github.com/aiArcOracle" target="_blank">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.47v-1.72c-2.79.61-3.38-1.34-3.38-1.34-.46-1.16-1.12-1.47-1.12-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.56 9.56 0 0112 6.8c.85 0 1.71.11 2.51.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.67.94.67 1.89v2.8c0 .25.18.56.69.47A10 10 0 0012 2z"/>
+                </svg>
+            </a>
+        </div>
+        <!-- Logo with Halo -->
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <radialGradient id="spaceGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#1F2522;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0A0A0A;stop-opacity:1" />
+                </radialGradient>
+                <radialGradient id="coreGrad" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" style="stop-color:#000000;stop-opacity:1" />
+                    <stop offset="80%" style="stop-color:#1A1A1A;stop-opacity:0.8" />
+                    <stop offset="100%" style="stop-color:#2ECC71;stop-opacity:0.2" />
+                </radialGradient>
+            </defs>
+            <circle cx="50" cy="50" r="50" fill="url(#spaceGrad)" />
+            <circle cx="50" cy="50" r="40" fill="none" stroke="#2ECC71" stroke-width="3" stroke-dasharray="15 10" opacity="0.7" />
+            <circle cx="50" cy="50" r="35" fill="none" stroke="#52BE80" stroke-width="2" stroke-dasharray="10 5" opacity="0.6" />
+            <circle cx="50" cy="50" r="20" fill="none" stroke="#ECF0F1" stroke-width="1.5" filter="url(#glow)" />
+            <circle cx="50" cy="50" r="18" fill="url(#coreGrad)" filter="url(#innerGlow)" />
+            <circle cx="50" cy="50" r="12" fill="#000000" />
+            <!-- Animated Halo -->
+            <circle class="halo" cx="50" cy="50" r="45" fill="none" stroke="#2ECC71" stroke-width="2" opacity="0.3" stroke-dasharray="20 10" />
+            <defs>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="2" result="coloredBlur" />
+                    <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                <filter id="innerGlow">
+                    <feGaussianBlur stdDeviation="1" result="coloredBlur" />
+                    <feMerge>
+                        <feMergeNode in="coloredBlur" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+            </defs>
+        </svg>
+        <!-- Hero Text with Typing Effect -->
+        <div class="hero-text">
+            <h1>ArcOracle</h1>
+            <p id="slogan" class="typing-cursor"></p>
+            <p id="subtitle" class="typing-cursor subtitle"></p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ArcOracle. All rights reserved.</p>
+    </footer>
+
+    <!-- Particle Animation and Typing Effect Script -->
+    <script>
+        // Particle Animation
+        const particleContainer = document.getElementById('particles');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            const size = Math.random() * 4 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.animationDuration = `${Math.random() * 6 + 4}s`;
+            particleContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), 10000);
+        }
+        setInterval(createParticle, 150);
+
+        // Typing Effect
+        const sloganText = "Unveiling the Cosmos of Data";
+        const subtitleText = "Built on rig with @arcdotfun and Solana";
+        const sloganElement = document.getElementById('slogan');
+        const subtitleElement = document.getElementById('subtitle');
+        let sloganIndex = 0;
+        let subtitleIndex = 0;
+
+        function typeSlogan() {
+            if (sloganIndex < sloganText.length) {
+                sloganElement.textContent = sloganText.slice(0, sloganIndex + 1);
+                sloganIndex++;
+                setTimeout(typeSlogan, 100); // 每100ms打一个字符
+            } else {
+                sloganElement.classList.remove('typing-cursor');
+                setTimeout(typeSubtitle, 500); // 500ms后开始副标题
+            }
+        }
+
+        function typeSubtitle() {
+            subtitleElement.classList.add('typing-cursor');
+            if (subtitleIndex < subtitleText.length) {
+                subtitleElement.textContent = subtitleText.slice(0, subtitleIndex + 1);
+                subtitleIndex++;
+                setTimeout(typeSubtitle, 100);
+            } else {
+                subtitleElement.classList.remove('typing-cursor');
+                // 添加链接
+                subtitleElement.innerHTML = 'Built on <a href="https://github.com/0xPlaygrounds/rig" target="_blank">rig</a> with @arcdotfun and Solana';
+            }
+        }
+
+        // 开始打字
+        setTimeout(typeSlogan, 1000); // 页面加载1秒后开始
+    </script>
+</body>
+</html>
